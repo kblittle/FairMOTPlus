@@ -260,12 +260,216 @@ if __name__ == '__main__':
                       MOT20-08
                       '''
         data_root = os.path.join(opt.data_dir, 'MOT20/images/test')
+
+    if opt.val_sportsmot:
+        seqs_str = '''  v_00HRwkvvjtQ_c001
+                        v_00HRwkvvjtQ_c003
+                        v_00HRwkvvjtQ_c005
+                        v_00HRwkvvjtQ_c007
+                        v_00HRwkvvjtQ_c008
+                        v_00HRwkvvjtQ_c011
+                        v_4r8QL_wglzQ_c001
+                        v_5ekaksddqrc_c001
+                        v_5ekaksddqrc_c002
+                        v_5ekaksddqrc_c003
+                        v_5ekaksddqrc_c004
+                        v_5ekaksddqrc_c005
+                        v_BgwzTUxJaeU_c008
+                        v_BgwzTUxJaeU_c012
+                        v_BgwzTUxJaeU_c014
+                        v_0kUtTtmLaJA_c004
+                        v_0kUtTtmLaJA_c005
+                        v_0kUtTtmLaJA_c006
+                        v_0kUtTtmLaJA_c007
+                        v_0kUtTtmLaJA_c008
+                        v_0kUtTtmLaJA_c010
+                        v_4-EmEtrturE_c009
+                        v_9MHDmAMxO5I_c002
+                        v_9MHDmAMxO5I_c003
+                        v_9MHDmAMxO5I_c004
+                        v_9MHDmAMxO5I_c006
+                        v_9MHDmAMxO5I_c009
+                        v_cC2mHWqMcjk_c007
+                        v_cC2mHWqMcjk_c008
+                        v_cC2mHWqMcjk_c009
+                        v_2QhNRucNC7E_c017
+                        v_dw7LOz17Omg_c053
+                        v_dw7LOz17Omg_c067
+                        v_G-vNjfx1GGc_c004
+                        v_G-vNjfx1GGc_c008
+                        v_G-vNjfx1GGc_c600
+                        v_G-vNjfx1GGc_c601
+                        v_i2_L4qquVg0_c006
+                        v_i2_L4qquVg0_c007
+                        v_i2_L4qquVg0_c009
+                        v_i2_L4qquVg0_c010
+                        v_ITo3sCnpw_k_c007
+                        v_ITo3sCnpw_k_c010
+                        v_ITo3sCnpw_k_c011
+                        v_ITo3sCnpw_k_c012
+                      '''
+        data_root = os.path.join(opt.data_dir, 'sportsmot/images/val')
+
+
+    if opt.test_sportsmot:
+        seqs_str = '''  v_-9kabh1K8UA_c008
+                        v_-9kabh1K8UA_c009
+                        v_-9kabh1K8UA_c010
+                        v_2BhBRkkAqbQ_c002
+                        v_6OLC1-bhioc_c001
+                        v_6OLC1-bhioc_c003
+                        v_6OLC1-bhioc_c005
+                        v_6OLC1-bhioc_c007
+                        v_6OLC1-bhioc_c008
+                        v_6OLC1-bhioc_c009
+                        v_6OLC1-bhioc_c011
+                        v_6OLC1-bhioc_c012
+                        v_6OLC1-bhioc_c013
+                        v_6OLC1-bhioc_c014
+                        v_6oTxfzKdG6Q_c004
+                        v_6oTxfzKdG6Q_c015
+                        v_7FTsO8S3h88_c001
+                        v_7FTsO8S3h88_c004
+                        v_7FTsO8S3h88_c005
+                        v_7FTsO8S3h88_c006
+                        v_7FTsO8S3h88_c007
+                        v_7FTsO8S3h88_c008
+                        v_42VrMbd68Zg_c003
+                        v_42VrMbd68Zg_c004
+                        v_42VrMbd68Zg_c011
+                        v_42VrMbd68Zg_c012
+                        v_82WN8C8qJmI_c002
+                        v_82WN8C8qJmI_c003
+                        v_82WN8C8qJmI_c004
+                        v_82WN8C8qJmI_c005
+                        v_82WN8C8qJmI_c014
+                        v_A4OJhlI6hgc_c001
+                        v_A4OJhlI6hgc_c002
+                        v_A4OJhlI6hgc_c003
+                        v_A4OJhlI6hgc_c005
+                        v_A4OJhlI6hgc_c601
+                        v_aVfJwdQxCsU_c001
+                        v_aVfJwdQxCsU_c007
+                        v_aVfJwdQxCsU_c015
+                        v_BdD9xu0E2H4_c003
+                        v_BdD9xu0E2H4_c004
+                        v_BdD9xu0E2H4_c006
+                        v_BdD9xu0E2H4_c010
+                        v_BdD9xu0E2H4_c011
+                        v_BdD9xu0E2H4_c013
+                        v_bQNDRprvpus_c001
+                        v_bQNDRprvpus_c003
+                        v_bQNDRprvpus_c005
+                        v_bQNDRprvpus_c007
+                        v_bQNDRprvpus_c008
+                        v_2Dnx8BpgUEs_c003
+                        v_2Dnx8BpgUEs_c005
+                        v_2Dnx8BpgUEs_c006
+                        v_2Dnx8BpgUEs_c007
+                        v_2Dw9QNH5KtU_c001
+                        v_2Dw9QNH5KtU_c003
+                        v_2Dw9QNH5KtU_c004
+                        v_2Dw9QNH5KtU_c007
+                        v_2Dw9QNH5KtU_c008
+                        v_2Dw9QNH5KtU_c012
+                        v_2Dw9QNH5KtU_c014
+                        v_2Dw9QNH5KtU_c018
+                        v_8rG1vjmJHr4_c004
+                        v_8rG1vjmJHr4_c005
+                        v_8rG1vjmJHr4_c006
+                        v_8rG1vjmJHr4_c007
+                        v_8rG1vjmJHr4_c008
+                        v_8rG1vjmJHr4_c010
+                        v_9p0i81kAEwE_c002
+                        v_9p0i81kAEwE_c003
+                        v_9p0i81kAEwE_c006
+                        v_9p0i81kAEwE_c007
+                        v_9p0i81kAEwE_c008
+                        v_9p0i81kAEwE_c009
+                        v_9p0i81kAEwE_c010
+                        v_9p0i81kAEwE_c013
+                        v_9p0i81kAEwE_c014
+                        v_9p0i81kAEwE_c015
+                        v_9p0i81kAEwE_c018
+                        v_9p0i81kAEwE_c019
+                        v_aAb0psypDj4_c003
+                        v_aAb0psypDj4_c006
+                        v_aAb0psypDj4_c008
+                        v_aAb0psypDj4_c009
+                        v_bhWjlAEICp8_c003
+                        v_bhWjlAEICp8_c004
+                        v_bhWjlAEICp8_c006
+                        v_bhWjlAEICp8_c008
+                        v_bhWjlAEICp8_c009
+                        v_bhWjlAEICp8_c010
+                        v_bhWjlAEICp8_c014
+                        v_bhWjlAEICp8_c018
+                        v_czYZnO9QxYQ_c002
+                        v_czYZnO9QxYQ_c005
+                        v_czYZnO9QxYQ_c008
+                        v_czYZnO9QxYQ_c012
+                        v_czYZnO9QxYQ_c013
+                        v_czYZnO9QxYQ_c014
+                        v_czYZnO9QxYQ_c016
+                        v_czYZnO9QxYQ_c020
+                        v_-hhDbvY5aAM_c001
+                        v_-hhDbvY5aAM_c002
+                        v_-hhDbvY5aAM_c005
+                        v_-hhDbvY5aAM_c006
+                        v_-hhDbvY5aAM_c007
+                        v_-hhDbvY5aAM_c008
+                        v_-hhDbvY5aAM_c009
+                        v_-hhDbvY5aAM_c011
+                        v_-hhDbvY5aAM_c012
+                        v_-hhDbvY5aAM_c600
+                        v_-hhDbvY5aAM_c602
+                        v_1UDUODIBSsc_c001
+                        v_1UDUODIBSsc_c004
+                        v_1UDUODIBSsc_c015
+                        v_1UDUODIBSsc_c037
+                        v_1UDUODIBSsc_c055
+                        v_1UDUODIBSsc_c056
+                        v_1UDUODIBSsc_c063
+                        v_1UDUODIBSsc_c067
+                        v_1UDUODIBSsc_c090
+                        v_1UDUODIBSsc_c103
+                        v_1UDUODIBSsc_c111
+                        v_1UDUODIBSsc_c113
+                        v_1UDUODIBSsc_c601
+                        v_1UDUODIBSsc_c602
+                        v_1UDUODIBSsc_c603
+                        v_1UDUODIBSsc_c606
+                        v_1UDUODIBSsc_c609
+                        v_1UDUODIBSsc_c615
+                        v_2ChiYdg5bxI_c039
+                        v_2ChiYdg5bxI_c044
+                        v_2ChiYdg5bxI_c046
+                        v_2ChiYdg5bxI_c058
+                        v_2ChiYdg5bxI_c067
+                        v_2ChiYdg5bxI_c072
+                        v_2ChiYdg5bxI_c086
+                        v_2ChiYdg5bxI_c115
+                        v_2ChiYdg5bxI_c120
+                        v_2ChiYdg5bxI_c128
+                        v_2ChiYdg5bxI_c135
+                        v_2ChiYdg5bxI_c136
+                        v_2ChiYdg5bxI_c600
+                        v_2ChiYdg5bxI_c601
+                        v_2ChiYdg5bxI_c602
+                        v_DjtFlW2eHFI_c614
+                        v_DjtFlW2eHFI_c616
+                        v_foGDoBblREI_c002
+                        v_foGDoBblREI_c008
+                        v_iF9bKPWdZlc_c001
+                        v_iF9bKPWdZlc_c003
+                      '''
+        data_root = os.path.join(opt.data_dir, 'sportsmot/images/test')
     seqs = [seq.strip() for seq in seqs_str.split()]
 
     main(opt,
          data_root=data_root,
          seqs=seqs,
-         exp_name='MOT17_test_public_dla34',
+         exp_name='sporsts_test_ch_hrnet18_byte_epoch25_buffer150',
          show_image=False,
          save_images=False,
          save_videos=False)
