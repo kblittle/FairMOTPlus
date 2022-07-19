@@ -1,7 +1,7 @@
 import os.path as osp
 import os
 import numpy as np
-
+import shutil
 
 def mkdirs(d):
     if not osp.exists(d):
@@ -10,40 +10,73 @@ def mkdirs(d):
 
 # seq_root = '/data/yfzhang/MOT/JDE/MOT15/images/train'
 # label_root = '/data/yfzhang/MOT/JDE/MOT15/labels_with_ids/train'
-seq_root = '/home/fc/datasets/sportsmot/images/val'
-label_root = '/home/fc/datasets/sportsmot/labels_with_ids/val'
+seq_root = '/home/fc/datasets/sportsmot/images/train'
+label_root = '/home/fc/datasets/sportsmot/labels_with_ids/train'
+split_txt_root = '/home/fc/datasets/sportsmot/splits_txt'
+out_root = '/home/fc/datasets/sportsmot_divide/sportsmot_30'
+out15_root = '/home/fc/datasets/sportsmot_divide/sportsmot_15'
 
-mkdirs(label_root)
 seqs = [s for s in os.listdir(seq_root)]
 # seqs = ['ADL-Rundle-6', 'ETH-Bahnhof', 'KITTI-13', 'PETS09-S2L1', 'TUD-Stadtmitte', 'ADL-Rundle-8', 'KITTI-17',
 #         'ETH-Pedcross2', 'ETH-Sunnyday', 'TUD-Campus', 'Venice-2']
 
-tid_curr = 0
-tid_last = -1
+
+train_txt = osp.join(split_txt_root, 'train.txt')
+train_list=[]
+with open(train_txt, "r") as f:
+    for line in f.readlines():
+        line = line.strip('\n')  #去掉列表中每一个元素的换行符
+        train_list.append(line)
+        # print(line)
+# train_list = np.loadtxt(train_txt, dtype=np.float64)
+
+volleyball_txt = osp.join(split_txt_root, 'volleyball.txt')
+volleyball_list=[]
+with open(volleyball_txt, "r") as f:
+    for line in f.readlines():
+        line = line.strip('\n')  #去掉列表中每一个元素的换行符
+        volleyball_list.append(line)
+
+
+
+
+basketball_txt = osp.join(split_txt_root, 'basketball.txt')
+basketball_list=[]
+with open(basketball_txt, "r") as f:
+    for line in f.readlines():
+        line = line.strip('\n')  #去掉列表中每一个元素的换行符
+        basketball_list.append(line)
+
+
+football_txt = osp.join(split_txt_root, 'football.txt')
+football_list=[]
+with open(football_txt, "r") as f:
+    for line in f.readlines():
+        line = line.strip('\n')  #去掉列表中每一个元素的换行符
+        football_list.append(line)
+
+
+volleyball_count=0
+football_count=0
+basketball_count=0
+
 for seq in seqs:
-    seq_info = open(osp.join(seq_root, seq, 'seqinfo.ini')).read()
-    seq_width = int(seq_info[seq_info.find('imWidth=') + 8:seq_info.find('\nimHeight')])
-    seq_height = int(seq_info[seq_info.find('imHeight=') + 9:seq_info.find('\nimExt')])
+    if os.path.exists(osp.join(out_root,seq)):
+        continue
+    shutil.copytree(osp.join(seq_root, seq), osp.join(out15_root, seq))
+    # if seq in volleyball_list and volleyball_count<10 :
+    #     shutil.copytree(osp.join(seq_root,seq),osp.join(out_root,seq))
+    #     volleyball_count+=1
+    # elif seq in football_list and football_count<10 :
+    #     shutil.copytree(osp.join(seq_root,seq),osp.join(out_root,seq))
+    #     football_count += 1
+    # elif seq in basketball_list and basketball_count<10 :
+    #     shutil.copytree(osp.join(seq_root,seq),osp.join(out_root,seq))
+    #     basketball_count+=1
+    # else:
+    #     print('something wrong')
 
-    gt_txt = osp.join(seq_root, seq, 'gt', 'gt.txt')
-    gt = np.loadtxt(gt_txt, dtype=np.float64, delimiter=',')
-    idx = np.lexsort(gt.T[:2, :])
-    gt = gt[idx, :]
-    seq_label_root = osp.join(label_root, seq, 'img1')
-    mkdirs(seq_label_root)
 
-    for fid, tid, x, y, w, h, mark, _, _ in gt:
-        if mark == 0:
-            continue
-        fid = int(fid)
-        tid = int(tid)
-        if not tid == tid_last:
-            tid_curr += 1
-            tid_last = tid
-        x += w / 2
-        y += h / 2
-        label_fpath = osp.join(seq_label_root, '{:06d}.txt'.format(fid))
-        label_str = '0 {:d} {:.6f} {:.6f} {:.6f} {:.6f}\n'.format(
-            tid_curr, x / seq_width, y / seq_height, w / seq_width, h / seq_height)
-        with open(label_fpath, 'a') as f:
-            f.write(label_str)
+# print(volleyball_count,football_count,basketball_count)
+
+
