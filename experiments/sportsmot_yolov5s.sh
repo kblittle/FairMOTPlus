@@ -1,3 +1,3 @@
 cd src
-python   train.py mot --exp_id sportsmot_dla34 --load_model '../models/ctdet_coco_dla_2x.pth' --data_cfg '../src/lib/cfg/sportsmot.json'
+python train.py mot --exp_id sportsmot_yolov5s --data_cfg '../src/lib/cfg/sportsmot.json' --lr 5e-4 --batch_size 16 --wh_weight 0.5 --multi_loss 'fix' --arch 'yolo' --reid_dim 64
 cd ..

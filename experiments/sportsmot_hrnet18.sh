@@ -1,3 +1,3 @@
 cd src
-python train.py mot --exp_id mix_mot17_half_hrnet18 --arch 'hrnet_18' --data_cfg '../src/lib/cfg/data_half.json' --batch_size 8
+python train.py mot --exp_id sportsmot_hrnet18 --arch 'hrnet_18' --data_cfg '../src/lib/cfg/sportsmot.json'
 cd ..
